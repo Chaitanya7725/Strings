@@ -7,26 +7,21 @@ public class CountandSay38 {
     }
 
     public static String countAndSay(int n) {
-        String one = "1";
-        String two = "11";
-        if (n == 1) return one;
-        if (n == 2) return two;
-        String result = two;
-        for (int i = 3; i <= n; i++) {
-            result+='&';
-            String temporary = "";
-            int counter = 1;
-            for (int j = 1; j < result.length(); j++) {
-                if(result.charAt(j) != result.charAt(j-1)){
-                    temporary += String.valueOf(counter) + result.charAt(j-1);
-                    counter = 1;
-                }
-                else
-                    counter++;
+        if(n==1)
+            return "1";
+        String s=countAndSay(n-1);
+
+        int counter=0;
+        StringBuilder result=new StringBuilder();
+        for(int i=0;i<s.length();i++){
+            counter++;
+            if(i==s.length()-1 || s.charAt(i)!=s.charAt(i+1)){
+                result.append(counter).append(s.charAt(i));
+                counter=0;
             }
-            result = temporary;
         }
-        return result;
+
+        return result.toString();
     }
 
 }
